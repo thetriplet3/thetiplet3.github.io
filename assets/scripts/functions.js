@@ -239,6 +239,7 @@ function updateUserEntry(entryObj) {
             document.frmDetails.options[1].disabled = true;
         }
         document.getElementById("pickUpLocation").value = entry.pickUpLocation;
+        document.getElementById("chbNeedParking").checked = entry.parkingNeeded;
         document.getElementById("regNumber").value = entry.regNumber;
         document.getElementById("btnUpdatePickUpLocation").style.display = "inline";
         document.getElementById("btnSubmit").disabled = true;
