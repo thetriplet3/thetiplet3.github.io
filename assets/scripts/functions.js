@@ -8,6 +8,17 @@ function init() {
 }
 
 function initListners() {
+    var parkingchb = document.getElementById("chbNeedParking");
+    parkingchb.onclick = function() {
+        if(this.checked) {
+            document.getElementById("parkingContainer").style.display = "block";
+            document.getElementById("parkingContainer").required = true;
+        }
+        else {
+            document.getElementById("parkingContainer").style.display = "none";
+            document.getElementById("parkingContainer").required = false;
+        }
+    }
     var radios = document.forms["frmDetails"].elements["options"];
     for (var i = 0, max = radios.length; i < max; i++) {
         radios[i].onclick = function () {
@@ -244,14 +255,22 @@ function submitForm(event) {
     var seats = document.getElementById("seats").value;
     var pickUpLocation = document.getElementById("pickUpLocation").value;
     var option = document.frmDetails.options.value
-    var regNumber = document.getElementById("regNumber").value;
+    var parkingNeeded = document.getElementById("chbNeedParking").checked
+    var regNumber = "0";
+    if(parkingNeeded) {
+        regNumber = document.getElementById("parkingNo").value;
+    }
+    else {
+        regNumber = document.getElementById("regNumber").value;
+    }
     var entryObj = {
         username: username,
         name: name,
         seats: seats,
         pickUpLocation: pickUpLocation,
         option: option,
-        regNumber: regNumber
+        regNumber: regNumber,
+        parkingNeeded: parkingNeeded
     }
 
     postData(url, "POST", entryObj)
