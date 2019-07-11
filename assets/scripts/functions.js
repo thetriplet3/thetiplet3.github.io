@@ -284,6 +284,10 @@ function submitForm(event) {
         parkingNeeded: parkingNeeded
     }
 
+    toastr.option = {
+        "positionClass": "toast-bottom-right",
+    }
+
     postData(url, "POST", entryObj)
         .then(handleErrors)
         .then((res) => {
@@ -292,7 +296,7 @@ function submitForm(event) {
             document.getElementById("btnSubmit").disabled = true;
             document.getElementById("btnUpdatePickUpLocation").style.display = "inline";
             updateUserEntry([res]);
-            toastr.success(`See you on saturday :)`, 'Success');
+            toastr.info(`See you on saturday :)`, 'Success');
 
         }).catch((error) => {
             toastr.error(error, 'Error')
