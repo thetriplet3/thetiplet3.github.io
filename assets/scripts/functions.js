@@ -240,6 +240,16 @@ function updateUserEntry(entryObj) {
         }
         document.getElementById("pickUpLocation").value = entry.pickUpLocation;
         document.getElementById("chbNeedParking").checked = entry.parkingNeeded;
+        if(entry.parkingNeeded) {
+            document.getElementById("parkingContainer").style.display = "block";
+            document.getElementById("parkingContainer").required = true;
+            document.getElementById("parkingNo").value = entry.regNumber;
+        }
+        else {
+            document.getElementById("parkingContainer").style.display = "none";
+            document.getElementById("parkingContainer").required = false;
+        }
+
         document.getElementById("regNumber").value = entry.regNumber;
         document.getElementById("btnUpdatePickUpLocation").style.display = "inline";
         document.getElementById("btnSubmit").disabled = true;
